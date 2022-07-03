@@ -1,0 +1,8 @@
+POST https://autumn-delicate-wilderness.glitch.me/v1/content/skills
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTkyLCJlbWFpbCI6ImwxMjNAZ21haWwuY29tIiwiaWF0IjoxNjU2ODU1Mjc3fQ.pexW8AbeDbyj9qx7NckrjUIQuZjDRFdv0Fj7fzyYe_w
+
+{
+    "title":"Good card",
+    "description":"All is good if this works"
+}
