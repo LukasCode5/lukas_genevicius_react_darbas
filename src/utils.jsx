@@ -14,6 +14,22 @@ export async function myFetch(url, method = 'GET', data = null) {
     console.log('myFetch error ===', error);
   }
 }
+export async function myFetchPostAuth(url, token, data = null) {
+  try {
+    const options = {
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+    };
+    options.method = 'POST';
+    options.body = data ? JSON.stringify(data) : null;
+    // console.log('options ===', options);
+    const response = await fetch(url, options);
+    // console.log('response ===', response);
+    const dataInJs = await response.json();
+    return { data: dataInJs, status: response.status };
+  } catch (error) {
+    console.log('myFetch error ===', error);
+  }
+}
 
 export async function myFetchAuth(url, token) {
   try {
