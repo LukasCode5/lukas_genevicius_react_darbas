@@ -11,14 +11,15 @@ function App() {
   return (
     <div className='App'>
       <Header />
+
       <Switch>
-        <Route path={'/register'}>
+        <Route exact path={'/register'}>
           <RegisterPage />
         </Route>
-        <Route path={'/login'}>
+        <Route exact path={'/login'}>
           <LoginPage />
         </Route>
-        <ProtectedRoute path={'/add'}>
+        <ProtectedRoute exact path={'/add'}>
           <AddPage />
         </ProtectedRoute>
         <ProtectedRoute exact path={'/'}>

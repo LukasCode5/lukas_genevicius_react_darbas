@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import { baseUrl, myFetch } from '../../utils';
 import Notification from '../Notification/Notification';
 import css from './RegisterForm.module.css';
+import officeHd from '../../assets/img/officeHd.jpg';
+import Container from '../UI/Container/Container';
 
 const initValues = {
   email: '',
@@ -49,6 +51,9 @@ function RegisterForm() {
         setShowNotification(true);
         return;
       }
+      values.email = '';
+      values.password = '';
+      values.repeat_password = '';
       setBackErrors('');
       setSuccessRegister('Vartotojas sekmingai užregistruotas');
       setShowNotification(true);
@@ -76,71 +81,86 @@ function RegisterForm() {
 
   return (
     <div className={css.formWrapper}>
-      <form onSubmit={formik.handleSubmit} className={css.form}>
-        {showNotification && backErrors && (
-          <Notification onClick={handleHideNotification} message={backErrors} error />
-        )}
-        {showNotification && successRegister && (
-          <Notification onClick={handleHideNotification} message={successRegister} />
-        )}
-        <h1>Register here</h1>
-        <div className={css.inputGroup}>
-          <label htmlFor='email'>Email</label>
-          <input
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.email}
-            type='email'
-            className={`${css.input} ${css[rightClassesForInput('email')]}`}
-            name='email'
-            placeholder='Įveskite email čia...'
-          />
+      <Container>
+        <div className={css.formGroup}>
+          <img src={officeHd} alt='registerOffice' />
+          <form onSubmit={formik.handleSubmit} className={css.form}>
+            {showNotification && backErrors && (
+              <Notification onClick={handleHideNotification} message={backErrors} error />
+            )}
+            {showNotification && successRegister && (
+              <Notification onClick={handleHideNotification} message={successRegister} />
+            )}
+            <h1>Registracija</h1>
+            <div className={css.inputGroup}>
+              <label htmlFor='email'>Email</label>
+              <input
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.email}
+                type='email'
+                className={`${css.input} ${css[rightClassesForInput('email')]}`}
+                name='email'
+                placeholder='Įveskite email čia...'
+              />
 
-          {formik.touched.email && (
-            <p className={`${css.message} ${css[rightClassesForErrorMessage('email')]}`}>
-              {formik.errors.email ? formik.errors.email : 'Viskas teisinga'}
-            </p>
-          )}
-        </div>
+              {formik.touched.email && (
+                <p
+                  className={`${css.message} ${
+                    css[rightClassesForErrorMessage('email').toString()]
+                  }`}
+                >
+                  {formik.errors.email ? formik.errors.email : 'Viskas teisinga'}
+                </p>
+              )}
+            </div>
 
-        <div className={css.inputGroup}>
-          <label htmlFor='password'>Slaptažodis</label>
-          <input
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.password}
-            type='password'
-            className={`${css.input} ${css[rightClassesForInput('password')]}`}
-            name='password'
-            placeholder='Įveskite savo slaptažodi čia...'
-          />
-          {formik.touched.password && (
-            <p className={`${css.message} ${css[rightClassesForErrorMessage('password')]}`}>
-              {formik.errors.password ? formik.errors.password : 'Viskas teisinga'}
-            </p>
-          )}
+            <div className={css.inputGroup}>
+              <label htmlFor='password'>Slaptažodis</label>
+              <input
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
+                type='password'
+                className={`${css.input} ${css[rightClassesForInput('password')]}`}
+                name='password'
+                placeholder='Įveskite savo slaptažodi čia...'
+              />
+              {formik.touched.password && (
+                <p className={`${css.message} ${css[rightClassesForErrorMessage('password')]}`}>
+                  {formik.errors.password ? formik.errors.password : 'Viskas teisinga'}
+                </p>
+              )}
+            </div>
+            <div className={css.inputGroup}>
+              <label htmlFor='repeat_password'>Pakartoti slaptažodį</label>
+              <input
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.repeat_password}
+                type='password'
+                className={`${css.input} ${css[rightClassesForInput('repeat_password')]}`}
+                name='repeat_password'
+                placeholder='Pakartokite savo slaptažodį čia...'
+              />
+              {formik.touched.repeat_password && (
+                <p
+                  className={`${css.message} ${
+                    css[rightClassesForErrorMessage('repeat_password')]
+                  }`}
+                >
+                  {formik.errors.repeat_password
+                    ? formik.errors.repeat_password
+                    : 'Viskas teisinga'}
+                </p>
+              )}
+            </div>
+            <button type='submit' className={css.buttonSubmit}>
+              Registruotis
+            </button>
+          </form>
         </div>
-        <div className={css.inputGroup}>
-          <label htmlFor='repeat_password'>Pakartoti slaptažodį</label>
-          <input
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.repeat_password}
-            type='password'
-            className={`${css.input} ${css[rightClassesForInput('repeat_password')]}`}
-            name='repeat_password'
-            placeholder='Repeat your password here...'
-          />
-          {formik.touched.repeat_password && (
-            <p className={`${css.message} ${css[rightClassesForErrorMessage('repeat_password')]}`}>
-              {formik.errors.repeat_password ? formik.errors.repeat_password : 'Viskas teisinga'}
-            </p>
-          )}
-        </div>
-        <button type='submit' className={css.button}>
-          Registruotis
-        </button>
-      </form>
+      </Container>
     </div>
   );
 }

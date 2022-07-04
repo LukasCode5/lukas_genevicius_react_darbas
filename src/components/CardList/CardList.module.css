@@ -1,4 +1,28 @@
-.cardContainer{
+.cardList {
+  min-height: 100vh;
+  padding: 50px;
+  background: rgb(34, 193, 195);
+  background: radial-gradient(circle, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+}
+
+.cardListGroup {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    flex-direction: column;
+    align-items: center;
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.cardListGroup h1{
+    justify-self: center;
+}
+
+.cardContainer {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: max-content;
+  min-height: 70vh;
+  width: 100%;
 }

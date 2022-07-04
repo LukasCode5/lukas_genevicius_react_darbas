@@ -6,6 +6,8 @@ import { useAuthCtx } from '../../store/authContext';
 import { baseUrl, myFetch, myFetchPostAuth } from '../../utils';
 import Notification from '../Notification/Notification';
 import css from './AddForm.module.css';
+import officeHd2 from '../../assets/img/officeHd2.jpg';
+import Container from '../UI/Container/Container';
 
 const initValues = {
   title: '',
@@ -46,6 +48,8 @@ function AddForm() {
         setShowNotification(true);
         return;
       }
+      values.title = '';
+      values.description = '';
       setBackErrors('');
       setSuccessAdd('Pridėjimas sekmingas');
       setShowNotification(true);
@@ -73,54 +77,60 @@ function AddForm() {
 
   return (
     <div className={css.formWrapper}>
-      <form onSubmit={formik.handleSubmit} className={css.form}>
-        {showNotification && backErrors && (
-          <Notification onClick={handleHideNotification} message={backErrors} error />
-        )}
-        {showNotification && successAdd && (
-          <Notification onClick={handleHideNotification} message={successAdd} />
-        )}
-        <h1>Login here</h1>
-        <div className={css.inputGroup}>
-          <label htmlFor='title'>Pavadinimas</label>
-          <input
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.title}
-            type='title'
-            className={`${css.input} ${css[rightClassesForInput('title')]}`}
-            name='title'
-            placeholder='Įveskite pavadinimą čia...'
-          />
+      <Container>
+        <div className={css.formGroup}>
+          <img src={officeHd2} alt='addOffice' />
+          <form onSubmit={formik.handleSubmit} className={css.form}>
+            {showNotification && backErrors && (
+              <Notification onClick={handleHideNotification} message={backErrors} error />
+            )}
+            {showNotification && successAdd && (
+              <Notification onClick={handleHideNotification} message={successAdd} />
+            )}
+            <h1>Prideti naują įgudį</h1>
+            <div className={css.inputGroup}>
+              <label htmlFor='title'>Pavadinimas</label>
+              <input
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.title}
+                type='title'
+                className={`${css.input} ${css[rightClassesForInput('title')]}`}
+                name='title'
+                placeholder='Įveskite pavadinimą čia...'
+              />
 
-          {formik.touched.title && (
-            <p className={`${css.message} ${css[rightClassesForErrorMessage('title')]}`}>
-              {formik.errors.title ? formik.errors.title : 'Viskas teisinga'}
-            </p>
-          )}
-        </div>
+              {formik.touched.title && (
+                <p className={`${css.message} ${css[rightClassesForErrorMessage('title')]}`}>
+                  {formik.errors.title ? formik.errors.title : 'Viskas teisinga'}
+                </p>
+              )}
+            </div>
 
-        <div className={css.inputGroup}>
-          <label htmlFor='description'>Aprašymas</label>
-          <textarea
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.description}
-            type='description'
-            className={`${css.input} ${css[rightClassesForInput('description')]}`}
-            name='description'
-            placeholder='Įveskite aprašymą čia...'
-          />
-          {formik.touched.description && (
-            <p className={`${css.message} ${css[rightClassesForErrorMessage('description')]}`}>
-              {formik.errors.description ? formik.errors.description : 'Viskas teisinga'}
-            </p>
-          )}
+            <div className={css.inputGroup}>
+              <label htmlFor='description'>Aprašymas</label>
+              <textarea
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.description}
+                type='description'
+                className={`${css.input} ${css[rightClassesForInput('description')]}`}
+                name='description'
+                placeholder='Įveskite aprašymą čia...'
+                rows={7}
+              />
+              {formik.touched.description && (
+                <p className={`${css.message} ${css[rightClassesForErrorMessage('description')]}`}>
+                  {formik.errors.description ? formik.errors.description : 'Viskas teisinga'}
+                </p>
+              )}
+            </div>
+            <button type='submit' className={css.buttonSubmit}>
+              Siųsti
+            </button>
+          </form>
         </div>
-        <button type='submit' className={css.button}>
-          Siųsti
-        </button>
-      </form>
+      </Container>
     </div>
   );
 }

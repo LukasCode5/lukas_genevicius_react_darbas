@@ -1,0 +1,23 @@
+.header{
+    margin: 0 auto;
+    justify-self: center;
+    max-width: 1600px;
+    background-color:white;
+    padding: 10px 30px 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.navLink{
+    display: inline-block;
+    padding: 7px 10px;
+    color: black;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.navLink:hover{
+    background: rgb(34, 193, 195);
+    background: radial-gradient(circle, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
+}
