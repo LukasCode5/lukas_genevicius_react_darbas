@@ -28,16 +28,20 @@
     font-weight: bold;
   background-color: rgb(200, 255, 200);
   border: 2px solid green;
-  color: green;
 }
 
 .successMsg {
+  color: green;
 }
 
 .error {
+  font-weight: bold;
+  background-color: rgb(252, 197, 197);
+  border: 2px solid red;
 }
 
 .errorMsg {
+  color:red;
 }
 
 .button {

@@ -14,7 +14,7 @@ const initValues = {
   password: '',
 };
 
-function LoginForm() {
+function LoginForm({ routeProtection }) {
   const history = useHistory();
   const ctx = useAuthCtx();
 
@@ -57,12 +57,20 @@ function LoginForm() {
         setShowNotification(true);
         return;
       }
+      const userEmail = values.email;
+      if (routeProtection) {
+        setTimeout(() => ctx.login(loginResult.data.token, userEmail), 3000);
+      } else {
+        ctx.login(loginResult.data.token, userEmail);
+      }
       values.email = '';
       values.password = '';
-      ctx.login(loginResult.data.token);
       setBackErrors('');
       setSuccessLogin('Prisijungimas sekmingas');
       setShowNotification(true);
+      if (routeProtection) {
+        return;
+      }
       setTimeout(() => history.replace('/'), 3000);
     },
   });
@@ -97,6 +105,11 @@ function LoginForm() {
             )}
             {showNotification && successLogin && (
               <Notification onClick={handleHideNotification} message={successLogin} />
+            )}
+            {routeProtection && (
+              <h2 className={css.usersOnly}>
+                Šis puslapis prieinamas tik prisijungusiems vartotojams
+              </h2>
             )}
             <h1>Prisijungimas</h1>
             <div className={css.inputGroup}>

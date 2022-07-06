@@ -41,7 +41,7 @@ function RegisterForm() {
       console.log('registerResult ===', registerResult);
       if (registerResult.status === 400) {
         setSuccessRegister('');
-        setBackErrors('Patikrinkite ivesties laukus');
+        setBackErrors('Patikrinkite įvesties laukus');
         setShowNotification(true);
         return;
       }

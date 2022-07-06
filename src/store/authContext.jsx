@@ -5,6 +5,7 @@ export const AuthContext = createContext({
   logout: () => {},
   isUserLoggedIn: false,
   token: '',
+  userEmail: '',
 });
 
 AuthContext.displayName = 'AuthContext';
@@ -13,14 +14,18 @@ function AuthProvider(props) {
   const [token, setToken] = useState(localStorage.getItem('userToken'));
   const isUserLoggedIn = !token ? false : true;
 
-  function login(userToken) {
+  const [userEmail, setUserEmail] = useState(null);
+
+  function login(userToken, userEmail) {
     setToken(userToken);
     localStorage.setItem('userToken', userToken);
+    setUserEmail(userEmail);
   }
 
   function logout() {
     setToken(null);
     localStorage.removeItem('userToken');
+    setUserEmail(null);
   }
 
   const ctx = {
@@ -28,6 +33,7 @@ function AuthProvider(props) {
     token,
     login,
     logout,
+    userEmail,
   };
   return <AuthContext.Provider value={ctx}>{props.children}</AuthContext.Provider>;
 }

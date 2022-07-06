@@ -4,7 +4,8 @@
     justify-content: center;
     background: rgb(34, 193, 195);
     background: radial-gradient(circle, rgba(34, 193, 195, 1) 0%, rgba(253, 187, 45, 1) 100%);
-    height: 98vh;
+    min-height: 91vh;
+    padding-bottom: 1px;
   }
   
   .formGroup {
@@ -26,7 +27,13 @@
     background-color: rgb(255, 255, 255);
   }
   
-  
+  .usersOnly{
+    text-align: center;
+    color: tomato;
+    background-color: rgb(252, 197, 197);
+    border-radius: 5px;
+    padding: 5px;
+  }
   
   .inputGroup {
       text-align: left;
@@ -103,7 +110,7 @@
       font-weight: bold;
       padding: 10px 20px;
       border-radius: 5px;
-      font-size: 15px;
+      font-size: 17px;
   }
   
   @media only screen  and (max-width:1450px) {
